@@ -38,6 +38,9 @@ jobs:
         VENDUS_EXPORT_CONFIG_FILE: ${{ secrets.VENDUS_EXPORT_CONFIG_FILE }}
       run: |
         echo $VENDUS_EXPORT_CONFIG_FILE | base64 --decode > vendus-export.config.json
+        
+    - name: List files
+      run: ls -a
 
     - name: Read package.json
       uses: rexdefuror/read-package-json@v1.0.5
