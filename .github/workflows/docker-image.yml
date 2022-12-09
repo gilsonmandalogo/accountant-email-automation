@@ -17,21 +17,21 @@ jobs:
 
     - name: Decode private.pem file
       env:
-        FILE: ${{ secrets.PRIVATE_KEY_FILE }}
+        PRIVATE_KEY_FILE: ${{ secrets.PRIVATE_KEY_FILE }}
       run: |
-        echo $FILE | base64 --decode > private.pem
+        echo $PRIVATE_KEY_FILE | base64 --decode > private.pem
 
     - name: Decode wise-statements.config.json file
       env:
-        FILE: ${{ secrets.WISE_STATEMENTS_CONFIG_FILE }}
+        WISE_STATEMENTS_CONFIG_FILE: ${{ secrets.WISE_STATEMENTS_CONFIG_FILE }}
       run: |
-        echo $FILE | base64 --decode > wise-statements.config.json
+        echo $WISE_STATEMENTS_CONFIG_FILE | base64 --decode > wise-statements.config.json
 
     - name: Decode vendus-export.config.json file
       env:
-        FILE: ${{ secrets.VENDUS_EXPORT_CONFIG_FILE }}
+        VENDUS_EXPORT_CONFIG_FILE: ${{ secrets.VENDUS_EXPORT_CONFIG_FILE }}
       run: |
-        echo $FILE | base64 --decode > vendus-export.config.json
+        echo $VENDUS_EXPORT_CONFIG_FILE | base64 --decode > vendus-export.config.json
 
     - name: Read package.json
       uses: rexdefuror/read-package-json@v1.0.5
