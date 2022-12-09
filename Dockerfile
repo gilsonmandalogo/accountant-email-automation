@@ -8,6 +8,7 @@ COPY wise-statements.config.json /root/.config/wise-statements/.config.json
 COPY vendus-export.config.json /root/.config/vendus-export/.config.json
 COPY private.pem ./
 COPY run.sh ./
-COPY app.js package.json yarn.lock .env loadShellEnv.js ./
+COPY .env ./.env
+COPY app.js package.json yarn.lock loadShellEnv.js ./
 RUN yarn install --production --frozen-lockfile
 CMD [ "run.sh" ]
