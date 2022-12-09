@@ -62,4 +62,5 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
+        no-cache: true
         tags: gilsonmjr/accountant-email-automation:latest,gilsonmjr/accountant-email-automation:${{ steps.split.outputs._0 }}
