@@ -14,19 +14,19 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-      
+
     - name: Decode private.pem file
       env:
         FILE: ${{ secrets.PRIVATE_KEY_FILE }}
       run: |
         echo $FILE | base64 --decode > private.pem
-        
+
     - name: Decode wise-statements.config.json file
       env:
         FILE: ${{ secrets.WISE_STATEMENTS_CONFIG_FILE }}
       run: |
         echo $FILE | base64 --decode > wise-statements.config.json
-        
+
     - name: Decode vendus-export.config.json file
       env:
         FILE: ${{ secrets.VENDUS_EXPORT_CONFIG_FILE }}
@@ -34,8 +34,8 @@ jobs:
         echo $FILE | base64 --decode > vendus-export.config.json
 
     - name: Read package.json
-      uses: rexdefuror/read-package-json@v1
-      
+      uses: rexdefuror/read-package-json@v1.0.5
+
     - name: Split version
       uses: jungwinter/split@v2
       id: split
