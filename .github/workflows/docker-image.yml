@@ -1,0 +1,38 @@
+name: Build and deploy docker image
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Read package.json
+      uses: rexdefuror/read-package-json@v1.0.5
+
+    - name: Split version string
+      uses: jungwinter/split@v2
+      id: split
+      with:
+        msg: ${{ env.PACKAGE_VERSION }}
+        separator: .
+
+    - name: Login to docker hub
+      uses: docker/login-action@v2
+      with:
+        username: gilsonmjr
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push docker image
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: gilsonmjr/accountant-email-automation:latest,gilsonmjr/accountant-email-automation:${{ steps.split.outputs._0 }}
