@@ -1,4 +1,4 @@
-import mailgun from 'mailgun-js'
+import nodemailer from 'nodemailer'
 import chalk from 'chalk'
 import { program } from 'commander'
 import fs from 'fs'
@@ -12,7 +12,7 @@ dotenv.config({ path: path.resolve(dirname, 'private/.env') })
 
 const app = JSON.parse(fs.readFileSync(path.resolve(dirname, 'package.json'), 'utf-8'))
 const log = console.log
-const { API_KEY, DOMAIN, FROM, TO, BCC, SUBJECT, TEMPLATE, LOCALE, HOST } = process.env
+const { FROM, TO, SUBJECT, LOCALE } = process.env
 
 try {
   program
@@ -39,23 +39,24 @@ try {
   const localizedMonth = date.toLocaleString(LOCALE, { month: 'long' })
   const parsedMonth = localizedMonth[0].toUpperCase() + localizedMonth.slice(1)
 
-  const mg = mailgun({
-    apiKey: API_KEY,
-    domain: DOMAIN,
-    host: HOST,
-  })
-  const data = {
-    from: FROM,
-    to: TO,
-    bcc: BCC,
-    subject: SUBJECT.replace('{{month}}', parsedMonth),
-    template: TEMPLATE,
-    't:variables': JSON.stringify({ month: parsedMonth }),
-    attachment: attachments,
-  }
+  const parsedTemplatePath = path.resolve(dirname, 'private/template.txt')
+  log(chalk.green(`Loading template file "${parsedTemplatePath}"...`))
+  const text = fs.readFileSync(parsedTemplatePath, 'utf-8').replaceAll('{{month}}', parsedMonth)
+
+  const parsedSmtpConfigPath = path.resolve(dirname, 'private/smtpConfig.json')
+  log(chalk.green(`Loading SMTP config file "${parsedSmtpConfigPath}"...`))
+  const smtpConfig = fs.readFileSync(parsedSmtpConfigPath, 'utf-8')
+  const transporter = nodemailer.createTransport(JSON.parse(smtpConfig))
 
   log(chalk.green(`Sending mail of "${parsedMonth}" with ${attachments.length} attachment(s)...`))
-  await mg.messages().send(data)
+
+  await transporter.sendMail({
+    from: FROM,
+    to: TO,
+    subject: SUBJECT.replace('{{month}}', parsedMonth),
+    text,
+    attachments: attachments.map(path => ({ path })),
+  })
 
   log(chalk.bold.green('Done, enjoy your saved time!'))
 } catch (error) {
