@@ -1,4 +1,4 @@
-FROM cypress/base:18.12.1
+FROM cypress/base:20.11.0
 
 ENTRYPOINT [ "sh" ]
 WORKDIR /usr/src/app
