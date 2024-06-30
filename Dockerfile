@@ -1,6 +1,6 @@
-FROM cypress/base:20.11.0
+FROM cypress/base:20.14.0
 
-ENTRYPOINT [ "sh" ]
+ENTRYPOINT [ "bash" ]
 WORKDIR /usr/src/app
 RUN mkdir attachments
 RUN npm config set update-notifier false
