@@ -1,0 +1,4 @@
+# https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
+name: Accountant email automation Home Assistant add-on repository
+url: 'https://github.com/gilsonmandalogo/accountant-email-automation'
+maintainer: Gilson Júnior <gilsonmandalogo@hotmail.com>
