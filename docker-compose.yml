@@ -5,9 +5,4 @@ services:
     container_name: accountant-email-automation
     image: gilsonmjr/accountant-email-automation
     volumes:
-      - ./private/wise-statements.config.json:/root/.config/wise-statements/.config.json:ro
-      - ./private/vendus-export.config.json:/root/.config/vendus-export/.config.json:ro
-      - ./private/private.pem:/usr/src/app/private/private.pem:ro
-      - ./private/.env:/usr/src/app/private/.env:ro
-      - ./private/smtpConfig.json:/usr/src/app/private/smtpConfig.json:ro
-      - ./private/template.txt:/usr/src/app/private/template.txt:ro
+      - ./private:/usr/src/app/private:ro
