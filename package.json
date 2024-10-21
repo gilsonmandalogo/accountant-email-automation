@@ -1,6 +1,6 @@
 {
   "name": "accountant-email-automation",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "description": "Sends a monthly email using a provided template and attachments.",
   "main": "app.js",
   "repository": "git@github.com:gilsonmandalogo/accountant-email-automation.git",
@@ -11,9 +11,11 @@
     "@types/node": "^20.14.9"
   },
   "dependencies": {
+    "@azure/msal-node": "^2.15.0",
+    "@microsoft/microsoft-graph-client": "^3.0.7",
     "chalk": "^5.3.0",
     "commander": "^12.0.0",
     "dotenv": "^16.4.5",
-    "nodemailer": "^6.9.14"
+    "isomorphic-fetch": "^3.0.0"
   }
 }

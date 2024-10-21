@@ -32,7 +32,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and push docker image
-      uses: docker/build-push-action@v5.1.0
+      uses: docker/build-push-action@v6
       with:
         push: true
         tags: gilsonmjr/accountant-email-automation:latest,gilsonmjr/accountant-email-automation:${{ steps.split.outputs._0 }},gilsonmjr/accountant-email-automation:${{ steps.split.outputs._0 }}.${{ steps.split.outputs._1 }},gilsonmjr/accountant-email-automation:${{ steps.split.outputs._0 }}.${{ steps.split.outputs._1 }}.${{ steps.split.outputs._2 }}
