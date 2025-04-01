@@ -7,15 +7,30 @@
   "author": "Gilson Júnior <gilsonmandalogo@hotmail.com>",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "devDependencies": {
-    "@types/node": "^22.13.14"
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15",
+    "typescript": "^5"
   },
   "dependencies": {
-    "@azure/msal-node": "^2.15.0",
-    "@microsoft/microsoft-graph-client": "^3.0.7",
-    "chalk": "^5.3.0",
-    "commander": "^13.1.0",
-    "dotenv": "^16.4.5",
-    "isomorphic-fetch": "^3.0.0"
+    "@azure/msal-node": "^2",
+    "@microsoft/microsoft-graph-client": "^3",
+    "chalk": "^5",
+    "commander": "^13",
+    "dotenv": "^16",
+    "isomorphic-fetch": "^3",
+    "next": "^15",
+    "react": "^19",
+    "react-dom": "^19"
   }
 }

@@ -4,3 +4,14 @@ wise-statements.config.json
 vendus-export.config.json
 .env
 template.txt
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
