@@ -6,21 +6,25 @@ import csvParser from 'csv-parser';
 import { Readable } from 'node:stream';
 
 const csvPath = path.join(process.cwd(), 'private', 'extrato.csv');
+const pdfPath = path.join(process.cwd(), 'private', 'extrato.pdf');
 
-function loadStatementsFile(formData: FormData) {
-  const file = formData.get('statementsCSV') as File | null;
+function loadFile(formData: FormData, fileName: string) {
+  const file = formData.get(fileName) as File | null;
   if (!file) {
-    throw new Error('Invalid file');
+    throw new Error(`Invalid ${fileName} file`);
   }
-  return Readable.from(file.stream(), { encoding: 'utf-8' });
+  return Readable.from(file.stream() as unknown as Iterable<unknown>, { encoding: 'utf-8' });
 }
 
 export async function generateCSV(formData: FormData) {
-  const statementsStream = loadStatementsFile(formData);
+  const statementsStream = loadFile(formData, 'statementsCSV');
+  const statementsPDFStream = loadFile(formData, 'statementsPDF');
   const outputStream = fs.createWriteStream(csvPath, { encoding: 'utf-8' });
-  const locale = 'pt-PT'; // TODO: Get locale from formData
+  const locale = formData.get('locale') as string || 'pt-PT';
   const numberFormatter = new Intl.NumberFormat(locale);
   const dateFormatter = new Intl.DateTimeFormat(locale);
+
+  // Save the CSV file
   outputStream.once('open', () => {
     outputStream.write('DATA;;\n');
 
@@ -42,4 +46,15 @@ export async function generateCSV(formData: FormData) {
         console.log('CSV file written successfully');
       });
   });
+
+  // Save the PDF file
+  const pdfStream = fs.createWriteStream(pdfPath, { encoding: 'utf-8' });
+  statementsPDFStream
+    .pipe(pdfStream)
+    .on('error', (error: Error) => {
+      console.error('Error writing PDF file:', error);
+    })
+    .on('finish', () => {
+      console.log('PDF file written successfully');
+    });
 }

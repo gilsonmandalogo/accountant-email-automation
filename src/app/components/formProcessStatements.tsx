@@ -1,4 +1,5 @@
 import { generateCSV } from '@/app/actions/processStatements';
+import LocaleInput from '@/app/components/localeInput';
 
 export default function FormProcessStatements() {
   return (
@@ -11,6 +12,7 @@ export default function FormProcessStatements() {
         Statements PDF file:
         <input type="file" name="statementsPDF" accept=".pdf" required />
       </label>
+      <LocaleInput />
       <button formAction={generateCSV}>Generate CSV</button>
     </form>
   );
