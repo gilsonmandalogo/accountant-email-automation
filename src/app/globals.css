@@ -1,18 +1,23 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bg-card: #dadada;
+  --bg-card-shadow: #818181;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --bg-card: #303030;
+    --bg-card-shadow: #494949;
   }
 }
 
 html,
 body {
-  max-width: 100vw;
+  max-width: 40rem;
+  margin: 0 auto;
   overflow-x: hidden;
 }
 
@@ -39,4 +44,24 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap {
+  row-gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  background: var(--bg-card);
+  box-shadow: 0px 0px 10px var(--bg-card-shadow);
+  row-gap: 1rem;
 }

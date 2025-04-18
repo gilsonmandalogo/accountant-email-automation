@@ -25,9 +25,9 @@
   "dependencies": {
     "@azure/msal-node": "^2",
     "@microsoft/microsoft-graph-client": "^3",
-    "@transferwise/approve-api-action-helpers": "^0",
     "chalk": "^5",
     "commander": "^13",
+    "csv-parser": "^3",
     "dotenv": "^16",
     "isomorphic-fetch": "^3",
     "next": "^15",

@@ -1,9 +1,6 @@
 node_modules/
-private.pem
-wise-statements.config.json
-vendus-export.config.json
+private/
 .env
-template.txt
 
 # next.js
 /.next/
