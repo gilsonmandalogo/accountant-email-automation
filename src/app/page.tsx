@@ -1,4 +1,5 @@
 import FormProcessStatements from '@/app/components/formProcessStatements';
+import FormGenerateEmail from '@/app/components/formGenerateEmail';
 
 export default function Home() {
   return (
@@ -6,10 +7,15 @@ export default function Home() {
       <main>
         <h1>Accountant Email Automation</h1>
         <div className="card">
+          <h2>Statements</h2>
           <a href="https://wise.com/balances/statements/balance-statement" target="_blank">
             Export Wise statements
           </a>
           <FormProcessStatements />
+        </div>
+        <div className="card">
+          <h2>Generate Email</h2>
+          <FormGenerateEmail />
         </div>
       </main>
     </div>

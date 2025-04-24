@@ -4,20 +4,21 @@ import fs from 'node:fs';
 import path from 'node:path';
 import csvParser from 'csv-parser';
 import { Readable } from 'node:stream';
+import { Stream } from 'nodemailer/lib/xoauth2';
 
 const csvPath = path.join(process.cwd(), 'private', 'extrato.csv');
 const pdfPath = path.join(process.cwd(), 'private', 'extrato.pdf');
 
-function loadFile(formData: FormData, fileName: string) {
+function loadFile(formData: FormData, fileName: string, options?: Stream.ReadableOptions) {
   const file = formData.get(fileName) as File | null;
   if (!file) {
     throw new Error(`Invalid ${fileName} file`);
   }
-  return Readable.from(file.stream() as unknown as Iterable<unknown>, { encoding: 'utf-8' });
+  return Readable.from(file.stream() as unknown as Iterable<unknown>, options);
 }
 
 export async function generateCSV(formData: FormData) {
-  const statementsStream = loadFile(formData, 'statementsCSV');
+  const statementsStream = loadFile(formData, 'statementsCSV', { encoding: 'utf-8' });
   const statementsPDFStream = loadFile(formData, 'statementsPDF');
   const outputStream = fs.createWriteStream(csvPath, { encoding: 'utf-8' });
   const locale = formData.get('locale') as string || 'pt-PT';

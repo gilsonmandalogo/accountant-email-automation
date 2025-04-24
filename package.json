@@ -16,6 +16,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^22",
+    "@types/nodemailer": "^6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
@@ -23,14 +24,9 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@azure/msal-node": "^2",
-    "@microsoft/microsoft-graph-client": "^3",
-    "chalk": "^5",
-    "commander": "^13",
     "csv-parser": "^3",
-    "dotenv": "^16",
-    "isomorphic-fetch": "^3",
     "next": "^15",
+    "nodemailer": "^6",
     "react": "^19",
     "react-dom": "^19"
   }

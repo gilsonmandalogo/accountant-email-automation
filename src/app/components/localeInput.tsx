@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useState } from 'react';
 
 export default function LocaleInput() {
@@ -11,7 +13,7 @@ export default function LocaleInput() {
     <label>
       Locale:
       <input
-        id="locale"
+        name="locale"
         type="text"
         value={locale}
         onChange={handleChange}
