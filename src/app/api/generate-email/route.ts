@@ -38,6 +38,11 @@ export async function POST(request: NextRequest) {
         path: path.join(process.cwd(), 'private', 'extrato.pdf'),
         contentType: 'application/pdf',
       },
+      {
+        filename: 'faturas.zip',
+        path: path.join(process.cwd(), 'private', 'faturas.zip'),
+        contentType: 'application/zip',
+      },
     ],
   }).compile().build();
   return new NextResponse(eml, {

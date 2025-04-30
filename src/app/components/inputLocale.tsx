@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 
-export default function LocaleInput() {
+export default function InputLocale() {
   const [locale, setLocale] = useState<string>(navigator.language || 'pt-PT');
 
   const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {

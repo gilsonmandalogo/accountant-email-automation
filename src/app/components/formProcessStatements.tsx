@@ -1,5 +1,5 @@
 import { generateCSV } from '@/app/actions/processStatements';
-import LocaleInput from '@/app/components/localeInput';
+import LocaleInput from '@/app/components/inputLocale';
 
 export default function FormProcessStatements() {
   return (
