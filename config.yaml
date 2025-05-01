@@ -9,12 +9,16 @@ ports:
 arch:
   - amd64
 init: false
-map:
-  - type: addon_config
-    path: /app
 image: "gilsonmjr/accountant-email-automation"
 webui: http://[HOST]:[PORT:3000]/
 ingress: true
 ingress_port: 3000
 panel_icon: mdi:email-fast
 watchdog: tcp://[HOST]:[PORT:3000]
+schema:
+  vendus_url: url
+  vendus_user: str
+  vendus_pass: password
+  email_to: email
+  email_subject: str
+  email_template: str

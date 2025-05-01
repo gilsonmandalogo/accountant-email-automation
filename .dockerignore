@@ -7,3 +7,5 @@ README.md
 .git
 private
 .env
+config.yaml
+repository.yaml
