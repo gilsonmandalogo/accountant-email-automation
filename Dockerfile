@@ -40,9 +40,8 @@ ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-RUN --mount=type=secret,id=app_env,env=APP_ENV
 
-COPY --from=builder /app/public ./public
+# COPY --from=builder /app/public ./public
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
