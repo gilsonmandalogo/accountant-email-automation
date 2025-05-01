@@ -1,8 +1,0 @@
-version: '3.8'
-
-services:
-  accountant-email-automation:
-    container_name: accountant-email-automation
-    image: gilsonmjr/accountant-email-automation
-    volumes:
-      - ./private:/usr/src/app/private:ro

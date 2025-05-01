@@ -1,16 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
-export $(node loadShellEnv.js | xargs)
-npx --yes wise-statements export -k private/private.pem -t csv -o "attachments/${STATEMENTS_FILE_NAME}.csv" -c private/wise-statements.config.json
-echo
-npx --yes wise-statements export -k private/private.pem -t pdf -o "attachments/${STATEMENTS_FILE_NAME}.pdf" -c private/wise-statements.config.json
-echo
-npx --yes vendus-export export -o "attachments/${INVOICE_FILE_NAME}.zip" -c private/vendus-export.config.json
-echo
+CONFIG_PATH=/data/options.json
 
-if [ -e "attachments/${INVOICE_FILE_NAME}.zip" ]
-then
-  node app.js -a "attachments/${STATEMENTS_FILE_NAME}.csv" "attachments/${STATEMENTS_FILE_NAME}.pdf" "attachments/${INVOICE_FILE_NAME}.zip"
-else
-  node app.js -a "attachments/${STATEMENTS_FILE_NAME}.csv" "attachments/${STATEMENTS_FILE_NAME}.pdf"
-fi
+export VENDUS_URL=$(jq --raw-output '.vendus_url // empty' $CONFIG_PATH)
+export VENDUS_USER=$(jq --raw-output '.vendus_user // empty' $CONFIG_PATH)
+export VENDUS_PASS=$(jq --raw-output '.vendus_pass // empty' $CONFIG_PATH)
+export EMAIL_TO=$(jq --raw-output '.email_to // empty' $CONFIG_PATH)
+export SUBJECT=$(jq --raw-output '.email_subject // empty' $CONFIG_PATH)
+export TEMPLATE=$(jq --raw-output '.email_template // empty' $CONFIG_PATH)
+
+node server.js
