@@ -40,7 +40,8 @@ LABEL \
 
 ENV NODE_ENV=production
 
-RUN apt update && apt install -y --no-install-recommends jq && apt clean
+RUN apt-get update && apt-get install -y --no-install-recommends jq && apt-get clean
+RUN npx cypress install
 
 COPY run.sh ./
 # COPY --from=builder /app/public ./public
