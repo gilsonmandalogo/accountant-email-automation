@@ -44,6 +44,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends jq && apt-get c
 RUN npx cypress install
 
 COPY run.sh ./
+COPY --from=deps /app/node_modules/vendus-export/cypress ./node_modules/vendus-export/cypress
+COPY --from=deps /app/node_modules/vendus-export/cypress.config.js ./node_modules/vendus-export
 # COPY --from=builder /app/public ./public
 
 # Automatically leverage output traces to reduce image size
