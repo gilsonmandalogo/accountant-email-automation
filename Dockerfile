@@ -46,6 +46,9 @@ RUN npx cypress install
 COPY run.sh ./
 COPY --from=deps /app/node_modules/vendus-export/cypress ./node_modules/vendus-export/cypress
 COPY --from=deps /app/node_modules/vendus-export/cypress.config.js ./node_modules/vendus-export
+COPY --from=deps /app/node_modules/cypress-downloadfile ./node_modules/vendus-export/node_modules/cypress-downloadfile
+COPY --from=deps /app/node_modules/cross-fetch ./node_modules/vendus-export/node_modules/cross-fetch
+COPY --from=deps /app/node_modules/fs-extra ./node_modules/vendus-export/node_modules/fs-extra
 # COPY --from=builder /app/public ./public
 
 # Automatically leverage output traces to reduce image size
