@@ -1,5 +1,7 @@
 # syntax=docker.io/docker/dockerfile:1
 
+ARG BUILD_FROM="ghcr.io/home-assistant/amd64-base:3.21"
+
 FROM node:22-alpine AS base
 
 # Install dependencies only when needed
@@ -30,33 +32,27 @@ RUN \
 
 
 # Production image, copy all the files and run next
-FROM cypress/base:22.15.0 AS runner
+FROM $BUILD_FROM AS runner
 WORKDIR /app
 
-LABEL \
-  io.hass.version="2025.4.4" \
-  io.hass.type="addon" \
-  io.hass.arch="amd64"
-
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV NODE_ENV=production
 
-RUN apt-get update && apt-get install -y --no-install-recommends jq && apt-get clean
-RUN npx cypress install
+RUN mkdir private
+
+RUN apk add --no-cache \
+  udev \
+  ttf-freefont \
+  chromium \
+  nodejs=~22
 
 COPY run.sh ./
-COPY --from=deps /app/node_modules/vendus-export/cypress ./node_modules/vendus-export/cypress
-COPY --from=deps /app/node_modules/vendus-export/cypress.config.js ./node_modules/vendus-export
-COPY --from=deps /app/node_modules/cypress-downloadfile ./node_modules/vendus-export/node_modules/cypress-downloadfile
-COPY --from=deps /app/node_modules/cross-fetch ./node_modules/vendus-export/node_modules/cross-fetch
-COPY --from=deps /app/node_modules/fs-extra ./node_modules/vendus-export/node_modules/fs-extra
 # COPY --from=builder /app/public ./public
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-
-EXPOSE 3000
 
 ENV PORT=3000
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import MailComposer from 'nodemailer/lib/mail-composer';
 import path from 'node:path';
+import fs from 'node:fs';
  
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
@@ -20,6 +21,27 @@ export async function POST(request: NextRequest) {
   // fix line endings
   const html = process.env.TEMPLATE!.replace(/(\r\n|\n|\r)/gm, '<br/>\r\n');
 
+  const attachments = [
+    {
+      filename: 'extrato.csv',
+      path: path.join(process.cwd(), 'private', 'extrato.csv'),
+      contentType: 'text/csv',
+    },
+    {
+      filename: 'extrato.pdf',
+      path: path.join(process.cwd(), 'private', 'extrato.pdf'),
+      contentType: 'application/pdf',
+    },
+  ];
+  const invoicePath = path.join(process.cwd(), 'private', 'faturas.zip');
+  if (fs.existsSync(invoicePath)) {
+    attachments.push({
+      filename: 'faturas.zip',
+      path: invoicePath,
+      contentType: 'application/zip',
+    });
+  }
+
   const eml = await new MailComposer({
     to: process.env.EMAIL_TO,
     subject: process.env.SUBJECT!.replace('{{month}}', parsedMonth),
@@ -27,23 +49,7 @@ export async function POST(request: NextRequest) {
     headers: {
       'X-Unsent': '1',
     },
-    attachments: [
-      {
-        filename: 'extrato.csv',
-        path: path.join(process.cwd(), 'private', 'extrato.csv'),
-        contentType: 'text/csv',
-      },
-      {
-        filename: 'extrato.pdf',
-        path: path.join(process.cwd(), 'private', 'extrato.pdf'),
-        contentType: 'application/pdf',
-      },
-      {
-        filename: 'faturas.zip',
-        path: path.join(process.cwd(), 'private', 'faturas.zip'),
-        contentType: 'application/zip',
-      },
-    ],
+    attachments,
   }).compile().build();
   return new NextResponse(eml, {
     headers: {
