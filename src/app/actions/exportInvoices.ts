@@ -84,6 +84,7 @@ export default async function exportInvoices(prevState: void, formData: FormData
     throw new Error('Failed to download the file');
   }
   await fs.writeFile(outputPath, response.body as never);
+  console.log('File downloaded successfully');
 }
 
 function formatDate(date: Date) {

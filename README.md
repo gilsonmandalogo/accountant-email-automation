@@ -1,20 +1,11 @@
 # accountant-email-automation
 
-Sends a monthly email using a provided template and attachments.
+Automates some tasks I need to do monthly.
+
+To summarize, it takes some files from [Wise](https://wise.com/), processes them by extracting relevant financial data, scrapes and exports some documents from [Vendus](https://www.vendus.pt/), and attaches everything into an .eml file so I can open it in any email client and just hit the "Send" button.
+
+It was built to be used as an add-on inside [Home Assistant](https://www.home-assistant.io/) so I can automate tasks like sending a notification when it's time to prepare and send the monthly email.
 
 ## Usage
 
-You will need to create a `.env` file inside `private` dir, you can use the follow template:
-
-```properties
-FROM=Myself <myself@mydomain.com>
-TO=myfriend@somedomain.com
-# {{month}} will be replaced by the actual month
-SUBJECT=Files of {{month}}
-LOCALE=pt-PT
-
-STATEMENTS_FILE_NAME=statements
-INVOICE_FILE_NAME=invoices
-```
-
-You also will need a `private.pem`, a `wise-statements.config.json` files, required by the [wise-statements](https://github.com/gilsonmandalogo/wise-statements) package, a `vendus-export.config.json` file, required by the [vendus-export](https://github.com/gilsonmandalogo/vendus-export) package, a `template.txt` file with the message you want to send (you can use the `{{month}}` placeholder inside) and a `smtpConfig.json` file, required by the [Nodemailer](https://nodemailer.com/smtp/), all these files inside `private` dir.
+You probably will need to fork this repo and change it because I have some very specific use case, but it's possible to use it as is, some configurations are loaded from environment variables.

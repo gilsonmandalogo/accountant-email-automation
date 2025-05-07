@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Accountant email automation
-version: "6.0.4"
+version: "6.1.1"
 slug: accountant-email-automation
 description: Sends a monthly email using a provided template and attachments.
 url: "https://github.com/gilsonmandalogo/accountant-email-automation"
@@ -14,6 +14,7 @@ webui: http://[HOST]:[PORT:3000]/
 panel_icon: mdi:email-fast
 watchdog: tcp://[HOST]:[PORT:3000]
 tmpfs: true
+homeassistant_api: true
 schema:
   vendus_url: url
   vendus_user: str

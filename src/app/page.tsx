@@ -1,6 +1,7 @@
 import FormProcessStatements from '@/app/components/formProcessStatements';
 import FormGenerateEmail from '@/app/components/formGenerateEmail';
 import FormExportInvoices from '@/app/components/formExportInvoices';
+import ButtonSendDoneEvent from '@/app/components/buttonSendDoneEvent';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <h2>Generate Email</h2>
         <FormGenerateEmail />
       </div>
+      <ButtonSendDoneEvent />
     </main>
   );
 }
