@@ -9,10 +9,10 @@ This is a Next.js web application designed as a Home Assistant add-on that autom
 ### Prerequisites and Environment Setup
 - Node.js v22 is required (specified in .nvmrc) but v20+ works fine
 - Uses Yarn as package manager (yarn.lock present)
-- Puppeteer requires special handling due to network restrictions
+- Google Fonts and Puppeteer downloads work normally
 
 ### Bootstrap and Install Dependencies
-- `PUPPETEER_SKIP_DOWNLOAD=true yarn install` -- Takes 2-3 seconds. REQUIRED: Always set PUPPETEER_SKIP_DOWNLOAD=true due to network restrictions preventing Chrome download.
+- `yarn install` -- Takes 30+ seconds due to Puppeteer Chrome download. NEVER CANCEL. Set timeout to 10+ minutes for safety.
 
 ### Build and Development
 - `yarn build` -- Takes 32 seconds. NEVER CANCEL. Set timeout to 60+ minutes for safety.
@@ -38,14 +38,12 @@ This is a Next.js web application designed as a Home Assistant add-on that autom
 
 ### Critical Files
 - `src/app/page.tsx` - Main UI with three sections (Statements, Export Invoices, Generate Email)
-- `src/app/layout.tsx` - Application layout (Google Fonts removed due to network restrictions)
+- `src/app/layout.tsx` - Application layout with Google Fonts (Geist and Geist Mono)
 - `private/` - Directory for processed files (extrato.csv, extrato.pdf, faturas.zip)
 - `config.yaml` - Home Assistant add-on configuration
 - `run.sh` - Production startup script for Home Assistant
 
 ### Known Build Issues and Workarounds
-- **Google Fonts**: Removed from layout.tsx due to network access restrictions
-- **Puppeteer**: Must use `PUPPETEER_SKIP_DOWNLOAD=true` during installation
 - **TypeScript**: Uses `as BodyInit` cast in generate-email route for NextResponse compatibility
 
 ## Validation and Testing
@@ -153,7 +151,7 @@ POST / 200 in 79ms
 ```
 
 CRITICAL TIMEOUTS:
+- Install: 30+ seconds actual, use 10+ minute timeout
 - Build: 32 seconds actual, use 60+ minute timeout
 - Lint: 2.5 seconds actual, use 30+ minute timeout  
-- Install: 2-3 seconds actual, use 10+ minute timeout
 NEVER CANCEL these operations before completion.
