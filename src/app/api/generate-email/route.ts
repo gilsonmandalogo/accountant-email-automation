@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     },
     attachments,
   }).compile().build();
-  return new NextResponse(eml, {
+  return new NextResponse(eml as BodyInit, {
     headers: {
       'Content-Type': 'message/rfc822',
       'Content-Disposition': 'attachment; filename="mail.eml"',
