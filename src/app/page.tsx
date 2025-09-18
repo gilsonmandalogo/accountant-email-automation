@@ -2,27 +2,50 @@ import FormProcessStatements from '@/app/components/formProcessStatements';
 import FormGenerateEmail from '@/app/components/formGenerateEmail';
 import FormExportInvoices from '@/app/components/formExportInvoices';
 import ButtonSendDoneEvent from '@/app/components/buttonSendDoneEvent';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function Home() {
   return (
-    <main>
-      <h1>Accountant Email Automation</h1>
-      <div className="card">
-        <h2>Statements</h2>
-        <a href="https://wise.com/balances/statements/balance-statement" target="_blank">
-          Export Wise statements
-        </a>
-        <FormProcessStatements />
+    <main className="container mx-auto p-4 space-y-6">
+      <h1 className="text-3xl font-bold text-center mb-8">Accountant Email Automation</h1>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>Statements</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <a 
+            href="https://wise.com/balances/statements/balance-statement" 
+            target="_blank"
+            className="text-primary hover:underline inline-block"
+          >
+            Export Wise statements
+          </a>
+          <FormProcessStatements />
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>Export Invoices</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <FormExportInvoices />
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>Generate Email</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <FormGenerateEmail />
+        </CardContent>
+      </Card>
+      
+      <div className="flex justify-center">
+        <ButtonSendDoneEvent />
       </div>
-      <div className="card">
-        <h2>Export Invoices</h2>
-        <FormExportInvoices />
-      </div>
-      <div className="card">
-        <h2>Generate Email</h2>
-        <FormGenerateEmail />
-      </div>
-      <ButtonSendDoneEvent />
     </main>
   );
 }
