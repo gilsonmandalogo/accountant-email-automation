@@ -1,17 +1,20 @@
 import InputLocale from '@/app/components/inputLocale';
 import SelectMonth from '@/app/components/selectMonth';
+import { Button } from '@/components/ui/button';
 
 export default function FormGenerateEmail() {
   return (
-    <form className="vertical gap">
+    <form className="space-y-4">
       <SelectMonth />
       <InputLocale />
-      <button
+      <Button
         formAction="/api/generate-email"
         formMethod="POST"
+        type="submit"
+        className="w-full"
       >
         Generate email
-      </button>
+      </Button>
     </form>
   );
 }
