@@ -58,7 +58,7 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
   
-  .container {
+  #__next {
     max-width: 40rem;
     margin: 0 auto;
   }
