@@ -1,6 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function InputLocale() {
   const [locale, setLocale] = useState('pt-PT');
@@ -14,15 +16,16 @@ export default function InputLocale() {
   }, []);
 
   return (
-    <label>
-      Locale:
-      <input
+    <div className="space-y-2">
+      <Label htmlFor="locale">Locale:</Label>
+      <Input
+        id="locale"
         name="locale"
         type="text"
         value={locale}
         onChange={handleChange}
         placeholder="e.g., pt-PT"
       />
-    </label>
+    </div>
   );
 };

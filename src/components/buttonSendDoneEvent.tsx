@@ -2,6 +2,7 @@
 
 import sendDoneEvent from '@/app/actions/sendDoneEvent';
 import { useCallback } from 'react';
+import { Button } from '@/components/ui/button';
 
 export default function ButtonSendDoneEvent() {
   const handleDone = useCallback(() => {
@@ -12,8 +13,8 @@ export default function ButtonSendDoneEvent() {
   }, []);
 
   return (
-    <div className='vertical'>
-      <button onClick={handleDone}>Done</button>
-    </div>
+    <Button onClick={handleDone} variant="secondary" size="lg" className='w-full'>
+      Done
+    </Button>
   );
 }
