@@ -27,8 +27,10 @@ export default function RootLayout({
       <head>
         <title>Accountant Email Automation</title>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}>
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <div className="max-w-2xl my-0 mx-auto">
+          {children}
+        </div>
       </body>
     </html>
   );

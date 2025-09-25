@@ -1,5 +1,5 @@
 import { generateCSV } from '@/app/actions/processStatements';
-import LocaleInput from '@/app/components/inputLocale';
+import LocaleInput from '@/components/inputLocale';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';

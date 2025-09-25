@@ -28,7 +28,7 @@ export default function SelectMonth() {
     <div className="space-y-2">
       <Label htmlFor="month">Month</Label>
       <Select name="month" value={selectedMonth} onValueChange={setSelectedMonth}>
-        <SelectTrigger>
+        <SelectTrigger className='w-full'>
           <SelectValue placeholder="Select a month" />
         </SelectTrigger>
         <SelectContent>

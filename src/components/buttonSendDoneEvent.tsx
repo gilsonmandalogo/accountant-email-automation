@@ -13,7 +13,7 @@ export default function ButtonSendDoneEvent() {
   }, []);
 
   return (
-    <Button onClick={handleDone} variant="secondary" size="lg">
+    <Button onClick={handleDone} variant="secondary" size="lg" className='w-full'>
       Done
     </Button>
   );

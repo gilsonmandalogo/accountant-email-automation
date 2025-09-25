@@ -1,6 +1,6 @@
 'use client';
 
-import SelectMonth from '@/app/components/selectMonth';
+import SelectMonth from '@/components/selectMonth';
 import exportInvoices from '@/app/actions/exportInvoices';
 import { useActionState } from 'react';
 import { Button } from '@/components/ui/button';

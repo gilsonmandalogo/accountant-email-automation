@@ -1,7 +1,7 @@
-import FormProcessStatements from '@/app/components/formProcessStatements';
-import FormGenerateEmail from '@/app/components/formGenerateEmail';
-import FormExportInvoices from '@/app/components/formExportInvoices';
-import ButtonSendDoneEvent from '@/app/components/buttonSendDoneEvent';
+import FormProcessStatements from '@/components/formProcessStatements';
+import FormGenerateEmail from '@/components/formGenerateEmail';
+import FormExportInvoices from '@/components/formExportInvoices';
+import ButtonSendDoneEvent from '@/components/buttonSendDoneEvent';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
           <a 
             href="https://wise.com/balances/statements/balance-statement" 
             target="_blank"
-            className="text-primary hover:underline inline-block"
+            className="text-primary inline-block"
           >
             Export Wise statements
           </a>

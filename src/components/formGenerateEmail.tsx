@@ -1,5 +1,5 @@
-import InputLocale from '@/app/components/inputLocale';
-import SelectMonth from '@/app/components/selectMonth';
+import InputLocale from '@/components/inputLocale';
+import SelectMonth from '@/components/selectMonth';
 import { Button } from '@/components/ui/button';
 
 export default function FormGenerateEmail() {
