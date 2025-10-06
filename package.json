@@ -1,6 +1,6 @@
 {
   "name": "accountant-email-automation",
-  "version": "6.1.1",
+  "version": "6.2.0",
   "description": "Sends a monthly email using a provided template and attachments.",
   "repository": "git@github.com:gilsonmandalogo/accountant-email-automation.git",
   "author": "Gilson Júnior <gilsonmandalogo@hotmail.com>",

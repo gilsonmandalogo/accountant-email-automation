@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Accountant email automation
-version: "6.1.1"
+version: "6.2.0"
 slug: accountant-email-automation
 description: Sends a monthly email using a provided template and attachments.
 url: "https://github.com/gilsonmandalogo/accountant-email-automation"
