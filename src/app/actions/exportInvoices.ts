@@ -20,7 +20,21 @@ export default async function exportInvoices(prevState: void, formData: FormData
   end.setUTCMonth(end.getUTCMonth() + 1);
   end.setUTCDate(0);
 
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+  const browser = await puppeteer.launch({
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--disable-accelerated-2d-canvas',
+      '--no-zygote',
+      '--single-process'
+    ],
+    headless: true, // Allow plenty of time for the DevTools protocol operations in slow environments
+    timeout: 0,
+    protocolTimeout: 600000, // Let user override executable path via env (useful in containers)
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+  });
   const page = await browser.newPage();
   await page.goto(`${process.env.VENDUS_URL}/login/`);
   await page.setViewport({width: 1080, height: 1024});
